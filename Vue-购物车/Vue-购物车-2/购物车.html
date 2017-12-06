@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+    <p>购物车</p>
+    <table>
+        <thead>
+        <tr>
+            <td>商品名称</td>
+            <td>商品价格</td>
+            <td>商品数量</td>
+            <td>商品总价</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>HUAWEI P10</td>
+            <td>4500</td>
+            <td><button class="puls" @click="numOne=numOne?numOne-1:numOne">-</button><span v-text="numOne">0</span><button class="add" @click="numOne=numOne+1">+</button></td>
+            <td>{{numOne*priceOne}}</td>
+        </tr>
+        <tr>
+            <td>金立 S10</td>
+            <td>2700</td>
+            <td><button class="puls" @click="numTwo=numTwo?numTwo-1:numTwo">-</button><span v-text="numTwo">{{jil}}</span><button class="add" @click="numTwo=numTwo+1">+</button></td>
+            <td>{{numTwo*priceTwo}}</td>
+        </tr>
+        </tbody>
+        <tfoot>
+        <tr>
+            <td></td>
+            <td></td>
+            <td>合计</td>
+            <td>{{(numOne*priceOne)+(numTwo*priceTwo )}}</td>
+        </tr>
+        </tfoot>
+    </table>
+</div>
+
+<script src="vue.js"></script>
+<script>
+    new Vue({
+        el:".container",
+        data:{
+            priceOne:4500,
+            priceTwo:2700,
+            numOne:0,
+            numTwo:0,
+        },
+        methods:{
+
+        }
+    })
+</script>
+</body>
+</html>

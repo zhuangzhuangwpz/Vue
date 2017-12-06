@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<div class="div1">
+    <ul>
+        <li v-for="(fruit,index) in fruits" v-on:click="fun1(index)">{{fruit}}</li>
+    </ul>
+    <form action="" v-on:submit.prevent="fun2()">
+        <input type="text" v-model="shuig">
+        <button>按钮</button>
+    </form>
+
+    <!--<form action="" v-on:submit.prevent="insert">-->
+        <!--<input type="text" v-model="shuig">-->
+        <!--<input type="submit" value="按钮" v-on:click="fun2()">-->
+        <!--&lt;!&ndash;<button>按钮</button>&ndash;&gt;-->
+    <!--</form>-->
+
+</div>
+<script src="js/vue.js"></script>
+<script>
+    new Vue({
+        el:".div1",
+        data:{
+            fruits:["香蕉","苹果","梨"],
+            shuig:[],
+        },
+        methods:{
+            fun1(aa){
+                this.fruits.splice(aa,1)
+            },
+            fun2(){
+                this.fruits.push(this.shuig);
+                this.shuig="";
+            }
+        }
+    })
+</script>
+</body>
+</html>

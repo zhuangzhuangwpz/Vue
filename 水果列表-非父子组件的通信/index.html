@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<div id="example">
+    <input-text></input-text>
+    <container></container>
+</div>
+
+<script src="vue.js"></script>
+<script>
+    var aa=new Vue();
+    Vue.component('input-text', {
+        template: `
+        <div>
+            <input v-model="addFruit"></input>
+            <button @click="fun1()">添加</button>
+        </div>`,
+        //data属性，必须以方法含有返回值的形式书写
+        data:function(){
+            return{
+                addFruit:"",
+            }
+        },
+        methods:{
+            fun1(){
+                 aa.$emit("addfun",this.addFruit);
+                 this.addFruit="";
+            }
+        }
+    }),
+    //嵌套
+    Vue.component('container', {
+                template: `
+        <ul>
+            <li v-for="(aFruit,index) in fruitList" @click="fun2(index)"><span>{{index+1}}</span>----{{aFruit}}</li>
+        </ul>`,
+        data:function () {
+            return{
+                fruitList:["香蕉","葡萄","苹果","梨"],
+            }
+        },
+        mounted:function () {
+            var self=this;
+            aa.$on("addfun",function (data) {
+                self.fruitList.push(data);
+            })
+        },
+        methods:{
+            fun2(index){
+                this.fruitList.splice(index,1)
+            }
+        }
+    })
+    // 创建根实例
+    var vm=new Vue({
+                el: '#example',
+            });
+</script>
+</body>
+</html>

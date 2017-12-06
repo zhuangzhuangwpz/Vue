@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>水果列表</title>
+</head>
+<body>
+<div id="example">
+    <fruit></fruit>
+</div>
+
+<script src="vue.js"></script>
+<script>
+    Vue.component('fruit',{
+        // 声明 props
+        template: `
+        <div>
+            <input type="text" v-model="addFruit">
+            <button @click="fun1()">添加</button>
+            <list v-bind:fruit_list="fruitList"></list>
+        </div>`,
+        //data属性，必须以方法含有返回值的形式书写
+        data:function(){
+            return{
+                fruitList:["香蕉","葡萄","苹果","梨"],
+                addFruit:"",
+            }
+        },
+        methods:{
+            fun1(){
+                this.fruitList.push(this.addFruit);
+                this.addFruit="";
+            }
+        }
+    }),
+    //嵌套
+    Vue.component('list', {
+        props: ['fruit_list'],
+        template: `
+            <ul>
+                <li v-for="(aFruit,index) in fruit_list" @click="fun2(index)">{{aFruit}}</li>
+            </ul>`,
+        data:function(){
+            return
+        },
+        methods:{
+            fun2(index){
+                this.fruit_list.splice(index,1)
+            }
+        }
+    }),
+    // 创建根实例
+    var vm=new Vue({
+                el: '#example',
+            });
+</script>
+</body>
+</html>

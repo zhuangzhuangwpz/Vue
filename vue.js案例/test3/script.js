@@ -1,0 +1,48 @@
+window.onload=function(){
+	//alert(1);
+	var data={ok:1,total:0,foods:[
+				{
+					name:'苹果',
+					status:false,
+					price:15,
+					isClick:false
+				},
+				{
+					name:'梨子',
+					status:false,
+					price:10,
+					isClick:false
+				},
+				{
+					name:'樱桃',
+					status:false,
+					price:22,
+					isClick:false
+				},
+				{
+					name:'西瓜',
+					status:false,
+					price:13,
+					isClick:false
+				}
+			]};
+	var demo=new Vue({
+		el:'#main',
+		data:data,
+		methods:{
+			change:function(){
+				this.ok=!this.ok;
+			},
+			UpdateTotal:function(food){
+				if(food.status==true){
+					food.price=-Math.abs(food.price);
+				}else{
+					food.price=Math.abs(food.price);
+				}
+				data.total+=food.price;
+				food.status=!food.status;
+				food.isClick=!food.isClick;
+			}
+		}
+	});
+}

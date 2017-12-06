@@ -1,0 +1,76 @@
+ <!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>加减</title>
+</head>
+<body>
+<div id="example">
+    <num></num>
+</div>
+
+<script src="vue.js"></script>
+<script>
+    Vue.component('num',{
+        // 声明 props
+        template: `
+        <div>
+            <h1>{{ment}}</h1>
+            <btn @sum="sum1" @add="add1" @tan="suj1"></btn>
+        </div>`,
+        //data属性，必须以方法含有返回值的形式书写
+        data:function(){
+            return{
+                ment:0,
+            }
+        },
+        methods:{
+            sum1(){
+                if(this.ment>0){
+                    this.ment--
+                }else {
+                    this.ment=0
+                }
+            },
+            add1(){
+                this.ment++
+            },
+            suj1(data){
+                alert(data.name)
+            }
+        }
+    }),
+    //嵌套
+    Vue.component('btn', {
+        props: [],
+        template: `
+            <div>
+                <button @click="sum2()">-</button>
+                <button @click="add2()">+</button>
+                <button @click="suj2()"></button>
+            </div>
+            `,
+        data:function () {
+            return{
+                ChirdrenData:{name:"小白",age:"2"}
+            }
+        },
+        methods:{
+            sum2(){
+                this.$emit("sum");
+            },
+            add2(){
+                this.$emit("add");
+            },
+            suj2(){
+                this.$emit("tan",this.ChirdrenData)
+            }
+        }
+    }),
+    // 创建根实例
+    new Vue({
+                el: '#example',
+            });
+</script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<div class="container">
+    <input type="text" v-model="aaq">
+    <br>
+    <h3 v-text="aaq"></h3>
+    <br>
+    <h3 v-html="aaq"></h3><!--v-html解析绑定数据-->
+    <br>
+    <h3 v-pre>{{aaq}}</h3><!--v-pre解析原样-->
+</div>
+
+<script src="vue.js"></script>
+<script>
+    new Vue({
+        el:".container",
+        data:{
+            aaq:"hello"
+        },
+        methods:{
+        }
+    })
+</script>
+</body>
+</html>

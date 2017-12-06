@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<div id="example">
+    <div>
+        <button @click="fun1()">这是hello标题</button>
+        <button @click="fun2()">这是word标题</button>
+    </div>
+    <component v-bind:is="cc"></component>
+</div>
+
+<script src="vue.js"></script>
+<script>
+    Vue.component('aa', {
+        template: `
+        <h1>
+            当前显示的是"这是hello标题"
+        </h1>`,
+    }),
+    //嵌套
+    Vue.component('bb', {
+        template: `
+        <h1>
+            当前显示的是"这是word标题"
+        </h1>`,
+    })
+    new Vue({
+        el: '#example',
+        data:{
+            cc:'aa',
+        },
+        methods:{
+            fun1(){
+                this.cc="aa"
+            },
+            fun2(){
+                this.cc="bb"
+            }
+        }
+    });
+</script>
+</body>
+</html>

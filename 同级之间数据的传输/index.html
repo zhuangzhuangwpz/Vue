@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<div id="app">
+    <num></num>
+    <yuns></yuns>
+</div>
+
+<script src="vue.js"></script>
+<script>
+    var aa=new Vue();
+    Vue.component('num', {
+        template: `
+        <div>
+            <p>{{numSum}}</p>
+        </div>`,
+        //data属性，必须以方法含有返回值的形式书写
+        data:function(){
+            return{
+                numSum:0,
+            }
+        },
+        mounted:function () {
+          var self=this;
+          aa.$on("myevent1",function () {
+              if(self.numSum>0){
+                  self.numSum--;
+              }
+          });
+          aa.$on("myevent2",function () {
+              self.numSum++;
+          });
+        },
+    }),
+    Vue.component('yuns', {
+                template: `
+            <div>
+                <button @click="fun1()">-</button>
+                <button @click="fun2()">+</button>
+            </div>`,
+        data:function(){
+            return{}
+        },
+        methods:{
+            fun1(){
+                aa.$emit("myevent1")
+            },
+            fun2(){
+                aa.$emit("myevent2")
+            }
+        },
+    })
+    // 创建根实例
+    new Vue({
+                el: '#app',
+            });
+</script>
+</body>
+</html>

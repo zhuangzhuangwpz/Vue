@@ -1,0 +1,22 @@
+td{
+    text-align: center;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+.tddelt{
+    display: inline-block;
+    text-align: center;
+    background: red;
+    border-radius: 3px;
+    border: 1px;
+}
+.tddelts{
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    display: block;
+    background: red;
+    border-radius: 3px;
+    border: 1px;
+}

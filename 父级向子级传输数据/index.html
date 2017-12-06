@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<div id="example">
+    <my-component message="父级向子级传输属性值"></my-component>
+</div>
+
+<script src="vue.js"></script>
+<script>
+    Vue.component('my-component',{
+        // 声明 props
+        props: ['message'],
+        // 就像 data 一样，prop 可以用在模板内
+        // 同样也可以在 vm 实例中像 “this.message” 这样使用
+        template: `
+        <div>
+            <div>A custom component!<br>{{message}}</div>
+            <component perc="这是一个父级调用子级的属性，获取父级的数据"></component>
+        </div>`,
+        //data属性，必须以方法含有返回值的形式书写
+        data:function(){
+            return{}
+        },
+        methods:{}
+    }),
+    //嵌套
+    Vue.component('component', {
+        props: ['perc'],
+        template: `
+            <div>
+                <div>{{perc}}</div>
+                <mars fas="深层父级调用子级的属性，获取父级的数据"></mars>
+                <mars cc="深层父级调用子级的属性，获取父级的数据(多个)"></mars>
+            </div>`,
+        methods:{}
+    }),
+    Vue.component('mars', {
+        props: ['fas',"cc"],
+        template: `
+           <div>
+               <div>{{fas}}</div>
+               <div>{{cc}}</div>
+           </div>`,
+        methods:{}
+     })
+    // 创建根实例
+    var vm=new Vue({
+                el: '#example',
+            });
+    //获取页面的ref属性的dom属性，ref必须写到页面中
+    //$el找到添加的内容的根级
+    console.log(vm.$refs.aa.$el.innerHTML);
+    vm.$refs.aa.$el.style.color="red";
+</script>
+</body>
+</html>

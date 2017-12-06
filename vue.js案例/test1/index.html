@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>vue+boostrap最佳实践1</title>
+	<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+	<div v-on:click.prevent id="btngroup" style="margin-left: 20px;margin-top: 20px" class="btn-group">
+		<div v-on:click=makeActive("按钮1") class="btn btn-primary">按钮1</div>
+		<div v-on:click=makeActive("按钮2") class="btn btn-success">按钮2</div>
+		<div v-on:click=makeActive("按钮3") class="btn btn-info">按钮3</div>
+		<br>
+		<p>当前选择的是:{{select}}</p>
+	</div>
+	<script src="http://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+	<script src="script.js"></script>
+	<script src="http://cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	<script src="../vue.js"></script>
+	
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<div>
+    <button v-on:click.once="fun1()">按钮</button>
+    <button v-on:click.once="fun2()">按钮</button>
+</div>
+
+<script src="vue.js"></script>
+<script>
+    new Vue({
+        el:"div",
+        methods:{
+            fun1(){
+                alert("只执行一次")
+            },
+            fun2(){
+                alert("v-on:可以替换为@")
+            }
+        }
+    })
+</script>
+</body>
+</html>

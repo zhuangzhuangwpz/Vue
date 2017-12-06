@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+    <div class="div-left">
+        <p>商品列表</p>
+        <table>
+            <thead>
+            <tr>
+                <td>商品名称</td>
+                <td>商品价格</td>
+                <td>商品数量</td>
+                <td>添加至购物车</td>
+            </tr>
+            </thead>
+            <tbody @click="fun1($event)">
+            <tr>
+                <td>香蕉</td>
+                <td>5</td>
+                <td><button class="puls" @click="numOne=numOne?numOne-1:numOne">-</button><span v-text="numOne">0</span><button class="add" @click="numOne=numOne+1">+</button></td>
+                <td><button class="btn">添加1</button></td>
+            </tr>
+            <tr>
+                <td>苹果</td>
+                <td>3</td>
+                <td><button class="puls" @click="numTwo=numTwo?numTwo-1:numTwo">-</button><span v-text="numTwo">0</span><button class="add" @click="numTwo=numTwo+1">+</button></td>
+                <td><button class="btn">添加2</button></td>
+            </tr>
+            <tr>
+                <td>梨</td>
+                <td>7</td>
+                <td><button class="puls" @click="numThree=numThree?numThree-1:numThree">-</button><span v-text="numThree">0</span><button class="add" @click="numThree=numThree+1">+</button></td>
+                <td><button class="btn">添加3</button></td>
+            </tr>
+            <tr>
+                <td>葡萄</td>
+                <td>2</td>
+                <td><button class="puls" @click="numFirt=numFirt?numFirt-1:numFirt">-</button><span v-text="numFirt">0</span><button class="add" @click="numFirt=numFirt+1">+</button></td>
+                <td><button class="btn">添加4</button></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="div-right">
+        <p>购物车</p>
+        <table>
+            <thead>
+            <tr>
+                <td>商品名称</td>
+                <td>商品价格</td>
+                <td>商品数量</td>
+                <td>商品删除</td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr v-for="(good,index) in goods">
+                <td>{{good.name}}</td>
+                <td>{{good.jiage}}</td>
+                <td><button class="puls" @click="good.num?good.num--:good.num">-</button>{{good.num}}<button class="add" @click="good.num++">+</button></td>
+                <td><button class="btn1"  @click="fun2(index)">移除</button></td>
+            </tr>
+            </tbody>
+            <tfoot>
+            <tr>
+                <td @click="fun3()">结算</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>
+
+<script src="vue.js"></script>
+<script>
+    new Vue({
+        el:".container",
+        data:{
+            priceOne:4500,
+            priceTwo:2700,
+            numOne:0,
+            numTwo:0,
+            numThree:0,
+            numFirt:0,
+            goods:[],
+        },
+        methods:{
+            fun1(event){
+                var a=event.target;
+                if(a.className==="btn"){
+                    var tds= a.parentNode;
+                    var trs=tds.parentNode;
+                    var newGood={};
+                    newGood.name=trs.children[0].innerHTML;
+                    newGood.jiage=trs.children[1].innerHTML;
+                    newGood.num=trs.children[2].children[1].innerHTML;
+                    if(newGood.num>0){
+                        for(var i=0;i<this.goods.length;i++){
+                            if(this.goods[i].name===newGood.name){
+                                this.goods[i].num=Number(this.goods[i].num)+Number(newGood.num);
+                                return false;
+                            }
+                        }
+                        this.goods.push(newGood);
+                    }
+                }
+            },
+            fun2(index){
+                this.goods.splice(index,1);
+            },
+            fun3(){
+                var sum=0;
+                for(var j=0;j<this.goods.length;j++){
+                    sum=sum+(this.goods[j].num*this.goods[j].jiage);
+                }
+                alert(sum)
+            }
+        }
+    })
+</script>
+</body>
+</html>

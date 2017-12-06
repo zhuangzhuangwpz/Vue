@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<div id="app">
+    <p>{{mag}}</p>
+    <h1 ref="h1">这是一个标题</h1>
+    <p ref="p1">{{mag}}</p>
+</div>
+<script src="vue.js"></script>
+<script>
+        /*
+       挂载
+       new Vue({
+           data:{
+               mag:"hellow",
+           }
+       }).$mount("#app")
+       */
+        var vm=new Vue({
+            data:{
+                mag:"hellow",
+            },
+            name:{aa:"小白"},
+            show:function(){
+                console.log("哈哈")
+            },
+        });
+        /*挂载$mount*/
+        vm.$mount("#app");
+        /*$同样也可以获取属性*/
+        console.log(vm.$data.mag);
+        /*单一变量可以直接调用*/
+        console.log(vm.mag);
+        /*调出自定义的选项$options*/
+        console.log(vm.$options.name);
+        vm.$options.show();
+        /*$refs获取页面上含有ref的属性的dom对象*/
+        console.log(vm.$refs.h1.innerHTML)
+        var h1=vm.$refs.h1;
+        h1.style.color="red";
+        /*回调函数*/
+        /*替换内容，但是console.log执行的速度要比vm.mag="word"替换的快，既页面会输出word，但控制台打印为原来的hellow*/
+        vm.mag="word";
+        console.log(vm.$refs.p1.innerHTML);
+        /*更新,等待替换完毕以后再控制台打印*/
+        vm.$nextTick(function(){
+            console.log(vm.$refs.p1.innerHTML)
+        })
+
+</script>
+</body>
+</html>

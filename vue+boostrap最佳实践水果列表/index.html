@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue+boostrap最佳实践水果列表</title>
+    <link rel="stylesheet" href="bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <style>
+        .color{
+            background:#E35885;
+        }
+    </style>
+    <script src="script.js"></script>
+</head>
+<body>
+<div style="width:500px;margin-top: 20px;margin-left: 20px;" id="main">
+    <a href="#" v-on:click="change" class="list-group-item active">商品总金额: {{total}}
+        <div></div>
+    </a>
+    <template v-if="ok">
+        <div v-for="food in foods">
+            <a href="#" v-bind:class="{'color':food.isClick}" class="list-group-item" v-on:click="UpdateTotal(food)">{{food.name}}
+                <span style="float:right" class="label label-default">{{food.price}}</span>
+            </a>
+        </div>
+    </template>
+</div>
+<script src="jquery-1.11.1.min.js"></script>
+<script src="script.js"></script>
+<script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+<script src="vue.js"></script>
+</body>
+</html>
+ 

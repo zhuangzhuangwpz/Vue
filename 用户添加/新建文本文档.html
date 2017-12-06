@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>添加用户</title>
+    <link rel="stylesheet" href="bootstrap-3.2.0-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="waper">
+    <div class="header">
+        <div class="container">
+            <div class="row">
+                <div class="header-main">
+                    <h2>添加用户</h2>
+                    <form>
+                        <p>
+                            <label>姓名：</label>
+                            <input type="text" placeholder="请输入用户名" v-model="fuser.name">
+                        </p>
+                        <p>
+                            <label>年龄：</label>
+                            <input type="text" placeholder="请输入年龄" v-model="fuser.age">
+                        </p>
+                        <p>
+                            <label>邮箱：</label>
+                            <input type="text" placeholder="请输入邮箱" v-model="fuser.em">
+                        </p>
+                    </form>
+                    <button v-on:click="fun2()">添加</button>
+                    <button v-on:click="fun3()">重置</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="main">
+        <div class="container">
+            <div class="row">
+                <div class="main-main">
+                    <h2>用户列表</h2>
+                    <table border="1">
+                        <thead>
+                        <tr>
+                            <td>序号</td>
+                            <td>姓名</td>
+                            <td>年龄</td>
+                            <td>邮箱</td>
+                            <td>操作</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <td>
+
+                        </td>
+                            <tr v-for="(user,index) in users">
+                                <td>{{index+1}}</td>
+                                <td>{{user.name}}</td>
+                                <td>{{user.age}}</td>
+                                <td>{{user.em}}</td>
+                                <td><button  class="tddelt" v-on:click="fun1(index)">删除</button></td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><button class="tddelts" v-on:click="fun4()">删除全部</button></td>
+                        </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="js/jquery-1.11.1.min.js"></script>
+<script src="js/vue.js"></script>
+<script>
+    new Vue({
+        el:".waper",
+        data:{
+            users:[{name:"Tom",age:"12",em:"123456@126.com"},{name:"jeng",age:"16",em:"789456@126.com"},{name:"Liming",age:"15",em:"123456@qq.com"}],
+            fuser:{name:"",age:"",em:""},
+        },
+        methods:{
+            fun1(index){
+                this.users.splice(index,1);
+
+            },
+            fun2(){
+                /*方法一*/
+                var obj={};
+                for(var i in this.fuser){
+                    obj[i]=this.fuser[i];
+                }
+                this.users.push(obj);
+
+                /*方法二*/
+//                this.users.push(this.fuser);
+//                this.fuser={};
+
+            },
+            fun3(){
+                this.fuser={};
+            },
+            fun4(){
+                this.users="";
+            }
+        }
+    })
+</script>
+</body>
+</html>

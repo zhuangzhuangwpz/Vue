@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>vue+boostrap最佳实践3</title>
+	<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../style.css">
+	<style>
+	 	.color{
+	 		background:#E35885;
+	 	}
+	</style>
+</head>
+<body>
+	<div style="width:500px;margin-top: 20px;margin-left: 20px;" id="main">
+		<a href="#" v-on:click="change" class="list-group-item active">商品总金额:  {{total}}
+		<div></div>
+		</a>
+		<template v-if="ok">
+		<div v-for="food in foods">
+		<a href="#" v-bind:class="{'color':food.isClick}" class="list-group-item" v-on:click="UpdateTotal(food)">{{food.name}}
+		<span style="float:right"  class="label label-default">￥{{*food.price}}</span>
+		</a>
+		</div>
+		</template>
+	</div>
+	<script src="http://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+	<script src="script.js"></script>
+	<script src="http://cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	<script src="../vue.js"></script>
+	
+</body>
+</html>

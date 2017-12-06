@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<style>
+    .div1{
+        background: mediumvioletred;
+        width: 100px;
+        height: 100px;
+    }
+    .div2{
+        margin-top: 15px;
+        background: blue;
+        width: 100px;
+        height: 100px;
+    }
+    .div3{
+        color: #ffffff;
+    }
+</style>
+<body>
+<div class="container">
+    <div :class="aaq"></div><!--：相当于v-bind-->
+    <div :class="{div2:true,div3:false}">如果类名后加true表示这个类名有作用，如果是false表示类名无作用</div>
+    <div :style="style1">填写内联样式</div>
+</div>
+
+<script src="vue.js"></script>
+<script>
+    new Vue({
+        el:".container",
+        data:{
+            aaq:"div1",
+            style1:{
+                marginTop: '15px',background: 'rebeccapurple',width: '100px',height: '100px'
+            },
+        },
+        methods:{
+        }
+    })
+</script>
+</body>
+</html>

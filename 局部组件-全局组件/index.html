@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>全剧组件-局部组件</title>
+</head>
+<body>
+<div id="example">
+    <num></num>
+    <aa></aa>
+    <bb></bb>
+</div>
+<div id="example1">
+    <num></num>
+    <aa></aa>
+    <bb></bb>
+</div>
+<script src="vue.js"></script>
+<script>
+    Vue.component('num',{
+        // 声明 props
+        template: `
+        <div>
+            <h1>{{ment}}</h1>
+        </div>`,
+        //data属性，必须以方法含有返回值的形式书写
+        data:function(){
+            return{
+                ment:"全局组件",
+            }
+        },
+        methods:{}
+    }),
+    new Vue({
+        el: '#example1',
+    });
+    new Vue({
+        el:"#example",
+        components:{
+             aa:{
+                 template:"<p>局部组件1</p>"
+             },
+             bb:{
+                 template:"<p>局部组件2</p>"
+             }
+        }
+    })
+</script>
+</body>
+</html>

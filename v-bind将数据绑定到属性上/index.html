@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<div class="div1">
+    <img v-bind:src="imgn" v-on:click="fun1()" alt="">
+</div>
+<script src="js/vue.js"></script>
+<script>
+    new Vue({
+        el:".div1",
+        data:{
+            imgn:"img/耳环1_03.jpg",
+            str:0,
+            tit:["img/耳环1_03.jpg","img/耳环2_03.jpg","img/耳环3_03.jpg","img/耳环4_03.jpg"],
+        },
+        methods:{
+            fun1(){
+               this.str++;
+                if(this.str==4){
+                    this.str=0;
+                }
+                if(this.str<4){
+                    console.log(this.str);
+                    this.imgn=this.tit[this.str];
+                }
+            }
+        }
+    })
+</script>
+</body>
+</html>

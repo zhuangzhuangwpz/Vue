@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>双向绑定</title>
+</head>
+<body>
+<div class="div1">
+    <!--用户名 <input type="text" v-model="name">-->
+    <!--年龄 <input type="text" v-model="age">-->
+    <!--{{name}},{{age}}-->
+    <button v-on:click="fun1()">按钮</button>
+</div>
+<script src="js/vue.js"></script>
+<script>
+    new Vue({
+        el:".div1",
+        data:{
+            name:"小白",
+            age:"2"
+        },
+        methods:{
+            fun1(){
+                console.log(this.name);
+                this.fun2();
+             },
+            fun2:function(){
+                console.log("hello");
+
+            }
+        }
+    })
+</script>
+</body>
+</html>

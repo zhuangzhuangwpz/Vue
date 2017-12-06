@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<div id="app">
+    <hello></hello>
+    <word></word>
+</div>
+
+<script src="vue.js"></script>
+<script>
+    var aa=new Vue();
+    Vue.component('hello', {
+        template: `
+        <div>
+            <button @click="fun1()">按钮向word中传数据</button>
+            <p>{{msg3}}</p>
+        </div>`,
+        //data属性，必须以方法含有返回值的形式书写
+        data:function(){
+            return{
+                msg3:"",
+                msg:"这是hello中的数据"
+            }
+        },
+        mounted:function () {
+          var self3=this;
+          aa.$on("myevent1",function (data) {
+              self3.msg3=data;
+          })
+        },
+        methods:{
+            fun1(){
+               var self1=this;
+               console.log(self1);
+               aa.$emit("myevent",self1.msg)
+            }
+        }
+    }),
+    Vue.component('word', {
+                template: `
+            <div>
+                <button @click="fun2()">按钮向hello中传数据</button>
+                <p>{{msg2}}</p>
+            </div>`,
+        data:function(){
+            return{
+                msg2:"",
+                msg3:"这是word中的数据",
+            }
+        },
+        methods:{
+            fun2(){
+                aa.$emit("myevent1",this.msg3)
+            }
+        },
+        mounted:function () {
+            var self2=this;
+            console.log(self2);
+            aa.$on("myevent",function (data) {
+                self2.msg2=data
+            })
+        }
+    })
+    // 创建根实例
+    new Vue({
+                el: '#app',
+            });
+</script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<style>
+    .div1{
+        width: 200px;
+        height: 200px;
+        background: red;
+    }
+    .div2{
+        width: 100px;
+        height: 100px;
+        background: yellow;
+    }
+</style>
+<body>
+<div class="container">
+    <!--阻止冒泡事件发生-->
+    <div class="div1" @click="fun1()">
+        <div class="div2" @click.stop="fun2()">
+
+        </div>
+    </div>
+    <!--不阻止冒泡事件发生-->
+    <div class="div1" @click="fun3()">
+        <div class="div2" @click="fun4()">
+
+        </div>
+    </div>
+</div>
+
+<script src="vue.js"></script>
+<script>
+    new Vue({
+        el:".container",
+        methods:{
+            fun1(){
+                console.log("只执行一次")
+            },
+            fun2(){
+                console.log("v-on:可以替换为@")
+            },
+            fun3(){
+                console.log("只执行一次")
+            },
+            fun4(){
+                console.log("v-on:可以替换为@")
+            }
+        }
+    })
+</script>
+</body>
+</html>
